@@ -14,10 +14,10 @@ import Post from '../models/post_model';
 export const cleanPosts = (posts, single) => {
   console.log('CLEAN called');
   if (single === true) {
-    return { id: posts._id, title: posts.title, tags: posts.tags };
+    return { id: posts._id, title: posts.title, tags: posts.tags, content: posts.content };
   } else {
     return posts.map(post => {
-      return { id: post._id, title: post.title, tags: post.tags };
+      return { id: post._id, title: post.title, tags: post.tags, content: posts.content };
     });
   }
 };
