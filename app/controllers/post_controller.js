@@ -4,8 +4,8 @@ import Post from '../models/post_model';
 // http://www.tutorialspoint.com/mongodb/mongodb_delete_document.htm
 // and mostly docs at http://mongoosejs.com/docs/queries.html
 
-// credit to Tim Tregubov and the HW5 part 1 walk through
-// hosted at http://cs52.me/assignments/hw5p1/
+// credit to Tim Tregubov and the HW5 part 2 walk through
+// hosted at http://cs52.me/assignments/hw5p2/
 
 // adapted from http://cs52.me/assignments/hw5p1/
 // this cleans the posts because we use id instead of dangling _id
@@ -14,10 +14,11 @@ import Post from '../models/post_model';
 export const cleanPosts = (posts, single) => {
   console.log('CLEAN called');
   if (single === true) {
-    return { id: posts._id, title: posts.title, tags: posts.tags, content: posts.content };
+    console.log(`author read as ${posts.postAuthor}`);
+    return { id: posts._id, title: posts.title, tags: posts.tags, content: posts.content, author: posts.postAuthor };
   } else {
     return posts.map(post => {
-      return { id: post._id, title: post.title, tags: post.tags, content: posts.content };
+      return { id: post._id, title: post.title, tags: post.tags, content: posts.content, author: posts.postAuthor };
     });
   }
 };
@@ -32,6 +33,8 @@ export const createPost = (req, res) => {
   postNew.title = req.body.title;
   postNew.tags = req.body.tags;
   postNew.content = req.body.content;
+  console.log(`auth -- read ${req.user.username}`);
+  postNew.postAuthor = req.user.username;
   // add it
   postNew.save()
   .then(result => {

@@ -5,8 +5,8 @@ import mongoose from 'mongoose';
 // at top of server.js
 import apiRouter from './router';
 
-// credit to Tim Tregubov and the HW5 part 1 walk through
-// hosted at http://cs52.me/assignments/hw5p1/
+// credit to Tim Tregubov and the HW5 part 2 walk through
+// hosted at http://cs52.me/assignments/hw5p2/
 
 // DB Setup
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blog';
