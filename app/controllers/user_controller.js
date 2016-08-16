@@ -14,6 +14,7 @@ export const signin = (req, res, next) => {
 
 // sign up a user from their email username and password
 export const signup = (req, res, next) => {
+  console.log('here');
   const email = req.body.email;
   const password = req.body.password;
   const username = req.body.username;
